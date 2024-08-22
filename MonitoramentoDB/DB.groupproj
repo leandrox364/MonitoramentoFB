@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{41F973CC-2235-4CC8-9900-D0D1D01CF229}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="MonitoramentoDB.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ClienteTeste\ClienteTeste.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="MonitoramentoDB">
+        <MSBuild Projects="MonitoramentoDB.dproj"/>
+    </Target>
+    <Target Name="MonitoramentoDB:Clean">
+        <MSBuild Projects="MonitoramentoDB.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MonitoramentoDB:Make">
+        <MSBuild Projects="MonitoramentoDB.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ClienteTeste">
+        <MSBuild Projects="ClienteTeste\ClienteTeste.dproj"/>
+    </Target>
+    <Target Name="ClienteTeste:Clean">
+        <MSBuild Projects="ClienteTeste\ClienteTeste.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ClienteTeste:Make">
+        <MSBuild Projects="ClienteTeste\ClienteTeste.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="MonitoramentoDB;ClienteTeste"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="MonitoramentoDB:Clean;ClienteTeste:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="MonitoramentoDB:Make;ClienteTeste:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
